@@ -1,0 +1,6 @@
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Debug\Console RPG.exe.config
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Debug\Console RPG.exe
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Debug\Console RPG.pdb
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Debug\Console RPG.csprojResolveAssemblyReference.cache
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Debug\Console RPG.exe
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Debug\Console RPG.pdb
