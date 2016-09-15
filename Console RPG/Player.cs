@@ -14,7 +14,10 @@ namespace Console_RPG
         public char lastDir = 'd';
         public int[] playerCord = { 0, 0 };
 
-        
+        public void checkColli()
+        {
+            //TODO
+        }
     }
 
 

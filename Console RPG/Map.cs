@@ -53,7 +53,9 @@ namespace Console_RPG
                 Console.Write("\n");
 
             }
-            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(Program.player.HP);
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n" + Program.dialouge);
         }
         public void placePlayer()
@@ -74,7 +76,7 @@ namespace Console_RPG
                     {
                         player.playerCord[0] = player.playerCord[0] + 1;
                         locPlayer();
-                        //Arrival Cords on fixed 14x10 grid
+                        //Arrival Cords on fixed 15x11 grid
                         player.playerX = 1;
                         player.playerY = 5;
                         placePlayer();
@@ -99,7 +101,7 @@ namespace Console_RPG
                     {
                         player.playerCord[1] = player.playerCord[1] + 1;
                         locPlayer();
-                        //Arrival Cords on fixed 14x10 grid
+                        //Arrival Cords on fixed 15x11 grid
                         player.playerX = 7;
                         player.playerY = 1;
 
@@ -111,7 +113,7 @@ namespace Console_RPG
                     {
                         player.playerCord[1] = player.playerCord[1] - 1;
                         locPlayer();
-                        //Arrival Cords on fixed 14x10 grid
+                        //Arrival Cords on fixed 15x11 grid
                         player.playerX = 7;
                         player.playerY = 9;
 

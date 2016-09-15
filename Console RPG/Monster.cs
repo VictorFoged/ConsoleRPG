@@ -25,6 +25,10 @@ namespace Console_RPG
                     {
                         monsterX = monsterX + 1;
                     }
+                    if (mLoc.map[monsterY][monsterX + 1] == "O")
+                    {
+                        Program.player.HP = Program.player.HP - 1;
+                    }
                     else
                     {
                         lastDir = ran.Next(0, 4);
@@ -34,6 +38,10 @@ namespace Console_RPG
                     if (mLoc.map[monsterY][monsterX - 1] != "#" & mLoc.map[monsterY][monsterX - 1] != "|" & mLoc.map[monsterY][monsterX - 1] != "_")
                     {
                         monsterX = monsterX - 1;
+                    }
+                    if (mLoc.map[monsterY][monsterX - 1] == "O")
+                    {
+                        Program.player.HP = Program.player.HP - 1;
                     }
                     else
                     {
@@ -45,6 +53,10 @@ namespace Console_RPG
                     {
                         monsterY = monsterY + 1;
                     }
+                    if (mLoc.map[monsterY + 1][monsterX] == "O")
+                    {
+                        Program.player.HP = Program.player.HP - 1;
+                    }
                     else
                     {
                         lastDir = ran.Next(0, 4);
@@ -54,6 +66,10 @@ namespace Console_RPG
                     if (mLoc.map[monsterY-1][monsterX] != "#" & mLoc.map[monsterY - 1][monsterX] != "|" & mLoc.map[monsterY - 1][monsterX] != "_")
                     {
                         monsterY = monsterY - 1;
+                    }
+                    if (mLoc.map[monsterY - 1][monsterX] == "O")
+                    {
+                        Program.player.HP = Program.player.HP - 1;
                     }
                     else
                     {

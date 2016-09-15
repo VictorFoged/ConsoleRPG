@@ -21,7 +21,7 @@ namespace Console_RPG
             currentMap.placePlayer();
             createForest();
             createTown();
-            while (true)
+            while (player.HP >= 0)
             {
 
                 currentMap.genMap(currentMap.map);
@@ -38,9 +38,20 @@ namespace Console_RPG
                         m.placeMonster();
                     }
                 }
+                foreach (NPC npc in NPC.npcList)
+                {
+                    if(npc.nLoc == currentMap)
+                    {
+                        npc.placeNPC();
+                    }
+                }
 
                
             }
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n \n \n \n Too bad, You Died \n \n \n \n");
+            Console.ReadLine();
             
         }
 
@@ -51,32 +62,82 @@ namespace Console_RPG
             switch (key)
             {
                 case 'w':
-                    if (map.map[player.playerY - 1][player.playerX] != "#")
+                    if (map.map[player.playerY - 1][player.playerX] == " " || map.map[player.playerY - 1][player.playerX] == "|" || map.map[player.playerY - 1][player.playerX] == "_" )
                     {
                         player.playerY = player.playerY - 1;
-                        player.lastDir = 'w';
+                        
                     }
+                    else if (map.map[player.playerY - 1][player.playerX] == "M")
+                    {
+                        player.HP = player.HP - 2;
+                    }
+                    
+
+                    player.lastDir = 'w';
                     break;
                 case 'a':
-                    if (map.map[player.playerY][player.playerX - 1] != "#")
+                    if (map.map[player.playerY][player.playerX - 1] == " " || map.map[player.playerY][player.playerX - 1] == "|" || map.map[player.playerY][player.playerX - 1] == "_")
                     {
                         player.playerX = player.playerX - 1;
-                        player.lastDir = 'a';
+                        
                     }
+                    else if (map.map[player.playerY][player.playerX - 1] == "M")
+                    {
+                        player.HP = player.HP - 1;
+                    }
+                    player.lastDir = 'a';
                     break;
                 case 's':
-                    if (map.map[player.playerY + 1][player.playerX] != "#")
+                    if (map.map[player.playerY + 1][player.playerX] == " " || map.map[player.playerY + 1][player.playerX] == "|" || map.map[player.playerY + 1][player.playerX] == "_")
                     {
                         player.playerY = player.playerY + 1;
-                        player.lastDir = 's';
+                        
                     }
+                    else if (map.map[player.playerY + 1][player.playerX] == "M")
+                    {
+                        player.HP = player.HP - 1;
+                    }
+                    player.lastDir = 's';
                     break;
                 case 'd':
-                    if (map.map[player.playerY][player.playerX + 1] != "#")
+                    if (map.map[player.playerY][player.playerX + 1] == " " || map.map[player.playerY][player.playerX + 1] == "|" || map.map[player.playerY][player.playerX + 1] == "_")
                     {
                         player.playerX = player.playerX + 1;
-                        player.lastDir = 'd';
+                        
                     }
+                    else if (map.map[player.playerY][player.playerX + 1] == " ")
+                    {
+                        player.HP = player.HP - 1;
+                    }
+                    player.lastDir = 'd';
+                    break;
+                case 'e':
+                    switch (player.lastDir)
+                    {
+                        
+                        case 'w':
+                            if (NPC.getNpcByLoc(player.playerX, player.playerY + 1) != null)
+                            {
+                                NPC.npcSpeak(player.playerX, player.playerY + 1);
+                            }
+                            break;
+                        case 'a':
+                            if (NPC.getNpcByLoc(player.playerX - 1, player.playerY) != null)
+                            {
+                                NPC.npcSpeak(player.playerX - 1, player.playerY);
+                            }
+                            break;
+                        case 's':
+                            if (NPC.getNpcByLoc(player.playerX, player.playerY - 1) != null)
+                            {
+                                NPC.npcSpeak(player.playerX, player.playerY - 1);
+                            }
+                            break;
+                        case 'd':
+                            if(NPC.getNpcByLoc(player.playerX + 1,player.playerY) != null)
+                            NPC.npcSpeak(player.playerX + 1 , player.playerY);
+                            break;
+                     }
                     break;
             }
 
@@ -115,14 +176,20 @@ namespace Console_RPG
             town.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             town.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             town.l3 = new string[] { "#", " ", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", " ", "#" };
-            town.l4 = new string[] { "#", " ", "#", " ", "N", "#", " ", " ", " ", "#", "N", " ", "#", " ", "#" };
+            town.l4 = new string[] { "#", " ", "#", " ", " ", "#", " ", " ", " ", "#", " ", " ", "#", " ", "#" };
             town.l5 = new string[] { "#", " ", "#", " ", "#", "#", " ", " ", " ", "#", "#", " ", "#", " ", "#" };
             town.l6 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|" };
             town.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             town.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", "#", "#", "#", " ", "#" };
-            town.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", "#", " ", "#" };
+            town.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", "#", "#", " ", "#" };
             town.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", "#", " ", "#" };
             town.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+
+            NPC Bob = new NPC();
+            Bob.npcX = 11;
+            Bob.npcY = 10-1;
+            Bob.npcDiag = " You should go to \n the forest located east \n of the town";
+            NPC.npcList.Add(Bob);
 
 
         
