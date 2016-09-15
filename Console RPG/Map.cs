@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
-    class Map :World
+    class Map
     {
         int xlen = 0;
         int ylen = 0;
@@ -44,9 +44,9 @@ namespace Console_RPG
             xlen = this.map[0].Length;
             ylen = this.map.Length;
             Console.Clear();
-            for (int y = 0; y < ylen; y++) //9
+            for (int y = 0; y < ylen; y++) //10
             {
-                for (int x = 0; x < xlen; x++) //13
+                for (int x = 0; x < xlen; x++) //15
                 {
                     Console.Write(this.map[y][x]);
                 }

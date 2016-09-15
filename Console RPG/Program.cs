@@ -28,6 +28,18 @@ namespace Console_RPG
                 currentMap.removePlayer();
                 move(Console.ReadKey().KeyChar, currentMap);
                 currentMap.placePlayer();
+                currentMap.genMap(currentMap.map);
+                foreach (Monster m in Monster.mList)
+                {
+                    if (m.mLoc == currentMap)
+                    {
+                        m.removeMonster();
+                        m.moveMonster();
+                        m.placeMonster();
+                    }
+                }
+
+               
             }
             
         }
@@ -90,7 +102,11 @@ namespace Console_RPG
 
             forest.mapcord = new int[] { 1,0};
             forest.Foreground = ConsoleColor.Green;
-            
+            Monster snake = new Monster();
+            snake.setMonster(12, 5);
+            Monster.mList.Add(snake);
+
+
         }
 
         public static void createTown()
