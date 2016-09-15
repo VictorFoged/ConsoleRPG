@@ -53,6 +53,8 @@ namespace Console_RPG
                 Console.Write("\n");
 
             }
+            
+            Console.WriteLine("\n" + Program.dialouge);
         }
         public void placePlayer()
             
@@ -75,10 +77,10 @@ namespace Console_RPG
                         //Arrival Cords on fixed 14x10 grid
                         player.playerX = 1;
                         player.playerY = 5;
-                        
                         placePlayer();
                         removePlayer();
-                        
+                        clearDia();
+  
                     }
                     else
                     {
@@ -87,10 +89,9 @@ namespace Console_RPG
                         //Arrival Cords
                         player.playerX = 13;
                         player.playerY = 5;
-                        
                         placePlayer();
                         removePlayer();
-                        
+                        clearDia();
                     }
                     break;
                 case "_":
@@ -104,6 +105,7 @@ namespace Console_RPG
 
                         placePlayer();
                         removePlayer();
+                        clearDia();
                     }
                     else
                     {
@@ -115,6 +117,7 @@ namespace Console_RPG
 
                         placePlayer();
                         removePlayer();
+                        clearDia();
                     }
                     break;
             }
@@ -150,6 +153,10 @@ namespace Console_RPG
             }
             return null; //Wont be needed unless I fuck up
             
+        }
+        public void clearDia()
+        {
+            Program.dialouge = "";
         }
         
         

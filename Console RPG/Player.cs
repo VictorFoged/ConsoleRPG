@@ -11,6 +11,7 @@ namespace Console_RPG
         public int HP = 10;
         public int playerX = 2;
         public int playerY = 5;
+        public char lastDir = 'd';
         public int[] playerCord = { 0, 0 };
 
         
