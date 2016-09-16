@@ -14,9 +14,18 @@ namespace Console_RPG
         public char lastDir = 'd';
         public int[] playerCord = { 0, 0 };
 
-        public void checkColli()
+        public static void checkColli()
         {
-            //TODO
+            foreach (Monster m in Monster.mList)
+            {
+                if(m.mLoc == Program.currentMap)
+                {
+                    if(Program.player.playerX == m.monsterX & Program.player.playerY == m.monsterY)
+                    {
+                        Program.player.HP = Program.player.HP - 1;
+                    }
+                }
+            }
         }
     }
 
