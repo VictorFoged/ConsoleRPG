@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
-    class Player
+    class Player //Test
     {
         public int HP = 10;
         public int playerX = 2;
