@@ -137,7 +137,7 @@ namespace Console_RPG
         public void locPlayer()
         {
             Player player = Program.player;
-            if (player.playerCord != mapcord)
+            if (player.playerCord != Program.currentMap.mapcord)
             {
                 Program.currentMap = getMapByLoc(player.playerCord);
             }
