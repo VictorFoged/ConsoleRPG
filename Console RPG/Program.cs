@@ -12,6 +12,8 @@ namespace Console_RPG
         public static Map town = new Map();
         public static Map forest = new Map();
         public static Map forest2 = new Map();
+        public static Map forest3 = new Map();
+        public static Map forest4 = new Map();
         public static Map currentMap = town;
         public static string dialouge = "Welcome to The Town";
 
@@ -20,9 +22,14 @@ namespace Console_RPG
             
             currentMap.genMap(currentMap.map);
             currentMap.placePlayer();
+            /*
             createForest();
             createTown();
             createForest2();
+            createForest3();
+            createForest4();
+            */
+            World.genWorld();
             while (player.HP >= 0)
             {
 
@@ -128,6 +135,7 @@ namespace Console_RPG
                             if (NPC.getNpcByLoc(player.playerX, player.playerY + 1) != null)
                             {
                                 NPC.npcSpeak(player.playerX, player.playerY + 1);
+                                
                             }
                             break;
                         case 'a':
@@ -143,10 +151,15 @@ namespace Console_RPG
                             }
                             break;
                         case 'd':
-                            if(NPC.getNpcByLoc(player.playerX + 1,player.playerY) != null)
-                            NPC.npcSpeak(player.playerX + 1 , player.playerY);
+                            if (NPC.getNpcByLoc(player.playerX + 1, player.playerY) != null)
+                            {
+                                NPC.npcSpeak(player.playerX + 1, player.playerY);
+                            }
                             break;
                      }
+                    break;
+                case 'i':
+                    player.showInven();
                     break;
             }
 
@@ -158,6 +171,7 @@ namespace Console_RPG
         public static void createForest()
         {
             World.addMap(forest);
+            
             forest.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
             forest.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#" };
             forest.l3 = new string[] { "#", " ", " ", " ", "#", "#", " ", "#", "#", " ", " ", " ", " ", " ", "#" };
@@ -197,6 +211,7 @@ namespace Console_RPG
         public static void createTown()
         {
             World.addMap(town);
+            
             town.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             town.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             town.l3 = new string[] { "#", " ", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", " ", "#" };
@@ -223,10 +238,12 @@ namespace Console_RPG
 
         
         }
+        
         public static void createForest2()
         {
             World.addMap(forest2);
             
+
 
             forest2.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
             forest2.l2 = new string[] { "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#" };
@@ -260,6 +277,83 @@ namespace Console_RPG
             fSnake3.mLoc = forest2;
             Monster.mList.Add(fSnake3);
         }
+        public static void createForest3()
+        {
+            World.addMap(forest3);
+            
+
+            forest3.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+            forest3.l2 = new string[] { "#", "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", "#" };
+            forest3.l3 = new string[] { "#", "#", " ", "#", "#", "#", " ", "#", " ", "#", " ", "#", "#", " ", "#" };
+            forest3.l4 = new string[] { "#", "#", " ", "#", "#", "#", " ", "#", " ", " ", " ", "#", "#", " ", "#" };
+            forest3.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", "#", "#", " ", "#", "#", "#", " ", "#" };
+            forest3.l6 = new string[] { "|", " ", "#", "#", "#", " ", " ", "#", "#", " ", "#", "#", " ", " ", "|" };
+            forest3.l7 = new string[] { "#", " ", " ", "#", "#", " ", "#", "#", " ", " ", " ", "#", " ", " ", "#" };
+            forest3.l8 = new string[] { "#", " ", " ", "#", "#", " ", "#", "#", " ", "#", " ", "#", " ", "#", "#" };
+            forest3.l9 = new string[] { "#", "#", " ", "#", " ", " ", " ", "#", " ", "#", " ", " ", " ", "#", "#" };
+            forest3.l10 = new string[]{ "#", "#", " ", " ", " ", "#", " ", " ", " ", "#", "#", "#", "#", "#", "#" };
+            forest3.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+
+            forest3.mapcord = new int[] { 3, 0 };
+            forest3.Foreground = ConsoleColor.DarkGreen;
+
+            //Add Monsters
+            Monster dSnake = new Monster();
+            dSnake.setMonster(13, 1);
+            dSnake.mLoc = Program.forest3;
+            Monster.mList.Add(dSnake);
+
+
+            Monster dSnake2 = new Monster();
+            dSnake2.setMonster(5, 8);
+            dSnake2.mLoc = forest3;
+            Monster.mList.Add(dSnake2);
+
+            Monster dSnake3 = new Monster();
+            dSnake3.setMonster(2, 1);
+            dSnake3.mLoc = forest3;
+            Monster.mList.Add(dSnake3);
+
+            Monster dSnake4 = new Monster();
+            dSnake4.setMonster(6, 4);
+            dSnake4.mLoc = forest3;
+            Monster.mList.Add(dSnake4);
+        }
+
+        public static Item Sword = new Item();
+        
+        public static void createForest4()
+        {
+            
+            World.addMap(forest4);
+            forest4.l1 = new string[] { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l2 = new string[] { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l3 = new string[] { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l4 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l6 = new string[] { "|", " ", " ", " ", " ", " ", "I", "#", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l8 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l9 = new string[] { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+            forest4.l10 = new string[]{ " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }; 
+            forest4.l11 = new string[]{ " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+
+            forest4.mapcord = new int[] { 4, 0 };
+            forest4.Foreground = ConsoleColor.Green;
+
+            
+            Sword.npcX = 6;
+            Sword.npcY = 5;
+            Sword.icon = "I";
+            Sword.nLoc = forest4;
+            Sword.name = "Forest Sword";
+            Sword.npcDiag = "You found a Sword!";
+            Sword.interact = Item.swordInt;
+            NPC.npcList.Add(Sword);
+            
+        }
+        
+    
     }
     
 }
