@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
+
     class World
     {
         public static List<Map> MapList = new List<Map>(); 
