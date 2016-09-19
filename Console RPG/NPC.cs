@@ -12,7 +12,9 @@ namespace Console_RPG
         public int npcY = 0;
         public string npcDiag = " ";
         public int[] npcCord = { 0, 0 };
+        public string icon = "N";
         public Map nLoc = Program.town;
+        public Action interact = null;
 
         public static List<NPC> npcList = new List<NPC>();
 
@@ -22,7 +24,8 @@ namespace Console_RPG
             {
                 if (npc.npcX == x & npc.npcY == y)
                 {
-                    if (npc.npcCord[0] == Program.player.playerCord[0] & npc.npcCord[1] == Program.player.playerCord[1])
+                    //if (npc.npcCord[0] == Program.player.playerCord[0] & npc.npcCord[1] == Program.player.playerCord[1])
+                    if(npc.nLoc == Program.currentMap)
                     {
                         return npc;
                     }
@@ -34,12 +37,17 @@ namespace Console_RPG
         {
             NPC talker = getNpcByLoc(x, y);
             Program.dialouge = talker.npcDiag;
+            if (talker.interact != null)
+            {
+                talker.interact();
+            }
         }
 
         public void placeNPC()
         {
-            nLoc.map[npcY][npcX] = "N";
+            nLoc.map[npcY][npcX] = icon;
             
         }
+        
     }
 }

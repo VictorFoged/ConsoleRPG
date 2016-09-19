@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
-    class Player
+    class Player //Test
     {
         public int HP = 10;
         public int playerX = 2;
         public int playerY = 5;
         public char lastDir = 'd';
         public int[] playerCord = { 0, 0 };
+        public static List<Item> Inventory = new List<Item>();
 
         public static void checkColli()
         {
@@ -26,6 +27,28 @@ namespace Console_RPG
                     }
                 }
             }
+        }
+
+        public void showInven()
+        {
+            string inven = "";
+            foreach (Item i in Inventory)
+            {
+                inven = inven + i.name + "\n";
+            }
+            Program.dialouge = inven;
+        }
+
+        public bool checkInven(Item item)
+        {
+            foreach (Item n in Inventory)
+            {
+                if (n == item)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
