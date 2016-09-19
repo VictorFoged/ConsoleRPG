@@ -99,7 +99,7 @@ namespace Console_RPG
                 case "_":
                     if(player.playerY > 3)
                     {
-                        player.playerCord[1] = player.playerCord[1] + 1;
+                        player.playerCord[1] = player.playerCord[1] - 1;
                         locPlayer();
                         //Arrival Cords on fixed 15x11 grid
                         player.playerX = 7;
@@ -111,7 +111,7 @@ namespace Console_RPG
                     }
                     else
                     {
-                        player.playerCord[1] = player.playerCord[1] - 1;
+                        player.playerCord[1] = player.playerCord[1] + 1;
                         locPlayer();
                         //Arrival Cords on fixed 15x11 grid
                         player.playerX = 7;

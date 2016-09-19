@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
+
     class World
     { //Test Comment
         public static List<Map> MapList = new List<Map>();
@@ -20,10 +21,13 @@ namespace Console_RPG
         public static void genWorld()
         {
             Program.createTown();
+            Program.createTown2();
             Program.createForest();
             Program.createForest2();
             Program.createForest3();
             Program.createForest4();
+            Program.createRoad();
+            Program.createRoad2();
             
         }
 

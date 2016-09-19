@@ -49,5 +49,37 @@ namespace Console_RPG
             
         }
         
+        public static void gateInter()
+        {
+
+            /*
+            foreach (Item item in Player.Inventory)
+            {
+                if (item == Program.Sword)
+                {
+                    Program.dialouge = "You may now pass";
+                    NPC.npcList.Remove(Program.gateKeeper);
+                    Program.currentMap.placeObject(7, 1, " ");
+                    return;
+                }
+            }*/
+            bool check = Program.player.checkInven(Program.Sword);
+            if (check == true)
+            {
+                Program.dialouge = "You may now pass";
+                NPC.npcList.Remove(Program.gateKeeper);
+                Program.currentMap.placeObject(7, 1, " ");
+                
+            }
+            else
+            {
+                Program.dialouge = "You need to find the \nForest Sword before \npassing here";
+            }   
+        }
+        public static void jeppeInter()
+        {
+            Program.dialouge = "Help us slay the \nGiant Winter Snake to \nto the north.";
+        }
+
     }
 }
