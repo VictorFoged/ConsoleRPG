@@ -15,6 +15,16 @@ namespace Console_RPG
             Program.currentMap.placeObject(6, 5, " ");
             Player.Inventory.Add(Program.Sword);
         }
-        
+
+        public static void getHP()
+        {
+            Program.player.HP = Program.player.HP + 5;
+            Program.dialouge = "You got 5 HP";
+            NPC.npcList.Remove(Program.HPup);
+            Program.currentMap.placeObject(12, 1, " ");
+
+
+        }
+
     }
 }

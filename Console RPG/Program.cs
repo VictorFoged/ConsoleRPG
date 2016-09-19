@@ -17,8 +17,12 @@ namespace Console_RPG
         public static Map town2 = new Map();
         public static Map road = new Map();
         public static Map road2 = new Map();
+        public static Map road3 = new Map();
+        public static Map road4 = new Map();
+        public static Map road5 = new Map();
+        public static Map roadBoss = new Map();
 
-        public static Map currentMap = town;
+        public static Map currentMap = roadBoss;
         public static string dialouge = "Welcome to The Town";
 
         static void Main(string[] args)
@@ -50,6 +54,14 @@ namespace Console_RPG
                         m.moveMonster();
                         m.placeMonster();
                     }
+                   
+                }
+                SnakeTail.followTail(SnakeBoss);
+                foreach (Boss b in Boss.bList)
+                {
+                    b.removeMonster();
+                    b.moveMonster();
+                    b.placeMonster();
                 }
                 foreach (NPC npc in NPC.npcList)
                 {
@@ -467,6 +479,114 @@ namespace Console_RPG
             road2.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
 
             road2.mapcord = new int[] { 0, 3 };
+        }
+        public static Item HPup = new Item();
+        public static void createRoad3()
+        {
+            World.addMap(road3);
+            road3.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+            road3.l2 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "H", " ", "#" };
+            road3.l3 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#" };
+            road3.l4 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#" };
+            road3.l5 = new string[] { "#", " ", " ", "#", "#", "#", "#", "#", "#", "#", "#", " ", " ", "#", "#" };
+            road3.l6 = new string[] { "|", " ", " ", " ", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#", "#" };
+            road3.l7 = new string[] { "#", " ", " ", " ", "#", "#", "#", "#", " ", " ", " ", " ", "#", "#", "#" };
+            road3.l8 = new string[] { "#", "#", " ", " ", " ", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#" };
+            road3.l9 = new string[] { "#", "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#", "#" };
+            road3.l10 = new string[]{ "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#", "#", "#" };
+            road3.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+
+            road3.mapcord = new int[] { 1, 3 };
+            HPup.npcX = 12;
+            HPup.npcY = 1;
+            HPup.nLoc = road3;
+            HPup.interact = Item.getHP;
+            NPC.npcList.Add(HPup);
+
+
+        }
+
+        public static void createRoad4()
+        {
+            World.addMap(road4);
+            road4.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            road4.l2 = new string[] { "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#" };
+            road4.l3 = new string[] { "#", "#", "#", "#", "#", "#", "#", " ", " ", " ", " ", "#", "#", "#", "#" };
+            road4.l4 = new string[] { "#", "#", "#", "#", " ", " ", "#", "#", "#", " ", " ", "#", "#", "#", "#" };
+            road4.l5 = new string[] { "#", "#", " ", " ", " ", " ", "#", "#", "#", " ", " ", "#", "#", "#", "#" };
+            road4.l6 = new string[] { "#", " ", " ", " ", "#", " ", " ", "#", "#", " ", " ", "#", "#", "#", "#" };
+            road4.l7 = new string[] { "#", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#", "#", "#", "#" };
+            road4.l8 = new string[] { "#", " ", " ", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#" };
+            road4.l9 = new string[] { "#", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+            road4.l10 = new string[]{ "#", "#", " ", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#", "#", "#" };
+            road4.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+
+            road4.mapcord = new int[] { 0, 4 };
+        }
+
+        public static void createRoad5()
+        {
+            World.addMap(road5);
+
+            road5.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            road5.l2 = new string[] { "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#", "#" };
+            road5.l3 = new string[] { "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#", "#" };
+            road5.l4 = new string[] { "#", "#", "#", "#", "#", " ", " ", "#", " ", " ", "#", "#", "#", "#", "#" };
+            road5.l5 = new string[] { "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#" };
+            road5.l6 = new string[] { "#", "#", "#", "#", "#", " ", "#", " ", "#", " ", "#", "#", "#", "#", "#" };
+            road5.l7 = new string[] { "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#" };
+            road5.l8 = new string[] { "#", "#", "#", "#", "#", "#", " ", "#", " ", "#", "#", "#", "#", "#", "#" };
+            road5.l9 = new string[] { "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#", "#" };
+            road5.l10 = new string[]{ "#", "#", "#", "#", "#", "#", " ", " ", " ", "#", "#", "#", "#", "#", "#" };
+            road5.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+
+            road5.mapcord = new int[] { 0, 5 };
+            road5.Background = ConsoleColor.Gray;
+            road5.Foreground = ConsoleColor.Black;
+
+            Monster rBird = new Monster();
+            rBird.setMonster(6, 2);
+            rBird.mLoc = road5;
+            Monster.mList.Add(rBird);
+
+            Monster rBird2 = new Monster();
+            rBird2.setMonster(6, 6);
+            rBird2.mLoc = road5;
+            Monster.mList.Add(rBird2);
+
+            Monster rBird3 = new Monster();
+            rBird3.setMonster(8, 4);
+            rBird3.mLoc = road5;
+            Monster.mList.Add(rBird3);
+        }
+
+        public static Boss SnakeBoss = new Boss();
+        public static Boss SnakeTail = new Boss();
+        public static void createBossRoom()
+        {
+            World.addMap(roadBoss);
+            roadBoss.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+            roadBoss.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l3 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l4 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l6 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+
+            road2.mapcord = new int[] { 0, 6 };
+
+            Boss.bList.Add(SnakeBoss);
+            SnakeBoss.setMonster(7, 4);
+            SnakeBoss.mLoc = roadBoss;
+
+            SnakeTail.icon = "0";
+
+            
+
         }
     }
     

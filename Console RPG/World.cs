@@ -28,6 +28,10 @@ namespace Console_RPG
             Program.createForest4();
             Program.createRoad();
             Program.createRoad2();
+            Program.createRoad3();
+            Program.createRoad4();
+            Program.createRoad5();
+            Program.createBossRoom();
             
         }
 

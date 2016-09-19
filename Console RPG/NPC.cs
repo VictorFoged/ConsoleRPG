@@ -51,18 +51,6 @@ namespace Console_RPG
         
         public static void gateInter()
         {
-
-            /*
-            foreach (Item item in Player.Inventory)
-            {
-                if (item == Program.Sword)
-                {
-                    Program.dialouge = "You may now pass";
-                    NPC.npcList.Remove(Program.gateKeeper);
-                    Program.currentMap.placeObject(7, 1, " ");
-                    return;
-                }
-            }*/
             bool check = Program.player.checkInven(Program.Sword);
             if (check == true)
             {
@@ -81,5 +69,6 @@ namespace Console_RPG
             Program.dialouge = "Help us slay the \nGiant Winter Snake to \nto the north.";
         }
 
+        
     }
 }
