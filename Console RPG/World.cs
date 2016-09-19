@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Console_RPG
 {
     class World
-    {
+    { //Test Comment
         public static List<Map> MapList = new List<Map>();
         //public static List<Action> WorldGen = new List<Action>();
         
