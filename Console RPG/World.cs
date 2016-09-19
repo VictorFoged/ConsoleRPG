@@ -21,10 +21,13 @@ namespace Console_RPG
         public static void genWorld()
         {
             Program.createTown();
+            Program.createTown2();
             Program.createForest();
             Program.createForest2();
             Program.createForest3();
             Program.createForest4();
+            Program.createRoad();
+            Program.createRoad2();
             
         }
 
