@@ -24,7 +24,6 @@ namespace Console_RPG
             {
                 if (npc.npcX == x & npc.npcY == y)
                 {
-                    //if (npc.npcCord[0] == Program.player.playerCord[0] & npc.npcCord[1] == Program.player.playerCord[1])
                     if(npc.nLoc == Program.currentMap)
                     {
                         return npc;

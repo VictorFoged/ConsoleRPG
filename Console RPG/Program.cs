@@ -38,7 +38,7 @@ namespace Console_RPG
             createForest4();
             */
             World.genWorld();
-            while (player.HP >= 0)
+            while (player.HP > 0)
             {
 
                 currentMap.genMap(currentMap.map);
@@ -56,13 +56,47 @@ namespace Console_RPG
                     }
                    
                 }
-                SnakeTail.followTail(SnakeBoss);
-                foreach (Boss b in Boss.bList)
+                if (currentMap == roadBoss)
                 {
-                    b.removeMonster();
-                    b.moveMonster();
-                    b.placeMonster();
+                    /*
+                    foreach (Boss tail in Boss.tailList)
+                    {
+                        tail.removeMonster();
+                        if (tail.tailChain != 1)
+                        {
+
+                            tail.followTail(Boss.getTailbyNr(tail.tailChain -1 ));
+                        }
+                        else
+                        {
+                            tail.followTail(SnakeBoss);
+                        }
+                        
+                        tail.placeMonster();
+                    }
+                    */
+                    
+                    SnakeTail.removeMonster();
+                    SnakeTail2.removeMonster();
+                    SnakeTail3.removeMonster();
+
+                    SnakeTail3.followTail(SnakeTail2);
+                    SnakeTail2.followTail(SnakeTail);
+                    SnakeTail.followTail(SnakeBoss);
+
+                    SnakeTail3.placeMonster();
+                    SnakeTail2.placeMonster();
+                    SnakeTail.placeMonster();
+                    
+
+                    SnakeBoss.moveMonster();
+                    SnakeBoss.placeMonster();
+
+                    Player.checkBossColli();
                 }
+                
+                
+                
                 foreach (NPC npc in NPC.npcList)
                 {
                     if(npc.nLoc == currentMap)
@@ -562,30 +596,48 @@ namespace Console_RPG
 
         public static Boss SnakeBoss = new Boss();
         public static Boss SnakeTail = new Boss();
+        public static Boss SnakeTail2 = new Boss();
+        public static Boss SnakeTail3 = new Boss();
         public static void createBossRoom()
         {
             World.addMap(roadBoss);
             roadBoss.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
-            roadBoss.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", "#" };
             roadBoss.l3 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             roadBoss.l4 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            roadBoss.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            roadBoss.l6 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", "#" };
+            roadBoss.l6 = new string[] { "#", "#", " ", " ", " ", " ", "#", "#", " ", " ", " ", " ", " ", " ", "#" };
             roadBoss.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             roadBoss.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             roadBoss.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            roadBoss.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            roadBoss.l10 = new string[]{ "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#" };
             roadBoss.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
 
             road2.mapcord = new int[] { 0, 6 };
 
-            Boss.bList.Add(SnakeBoss);
+            
             SnakeBoss.setMonster(7, 4);
             SnakeBoss.mLoc = roadBoss;
 
             SnakeTail.icon = "0";
+            SnakeTail.setMonster(8, 4);
+            SnakeTail.mLoc = roadBoss;
+            SnakeTail.tailChain = 1;
+            Boss.tailList[0] = SnakeTail;
 
-            
+            SnakeTail2.icon = "0";
+            SnakeTail2.setMonster(9, 4);
+            SnakeTail2.mLoc = roadBoss;
+            SnakeTail2.tailChain = 2;
+            Boss.tailList[1] = SnakeTail2;
+
+            SnakeTail3.icon = "0";
+            SnakeTail3.setMonster(10, 4);
+            SnakeTail3.mLoc = roadBoss;
+            SnakeTail3.tailChain = 3;
+            Boss.tailList[2] = SnakeTail3;
+
+
 
         }
     }

@@ -8,8 +8,9 @@ namespace Console_RPG
 {
     class Boss :Monster
     {
-        public static List<Boss> bList = new List<Boss>();
+        public static Boss[] tailList = new Boss[3];
         public string icon = "M";
+        public int tailChain = 0;
 
         public new void moveMonster() //Make Recursive Random Movement Function that doesn't risk infinity loops. Boss needs recursive because of tail.
         {
@@ -18,7 +19,7 @@ namespace Console_RPG
             switch (lastDir)
             {
                 case 0:
-                    if (mLoc.map[monsterY][monsterX + 1] != "#" & mLoc.map[monsterY][monsterX + 1] != "|" & mLoc.map[monsterY][monsterX + 1] != "_")
+                    if (mLoc.map[monsterY][monsterX + 1] != "#" & mLoc.map[monsterY][monsterX + 1] != "0" & mLoc.map[monsterY][monsterX + 1] != "_")
                     {
                         monsterX = monsterX + 1;
                     }
@@ -56,7 +57,7 @@ namespace Console_RPG
                     }
                     break;
                 case 1:
-                    if (mLoc.map[monsterY][monsterX - 1] != "#" & mLoc.map[monsterY][monsterX - 1] != "|" & mLoc.map[monsterY][monsterX - 1] != "_")
+                    if (mLoc.map[monsterY][monsterX - 1] != "#" & mLoc.map[monsterY][monsterX - 1] != "0" & mLoc.map[monsterY][monsterX - 1] != "_")
                     {
                         monsterX = monsterX - 1;
                     }
@@ -92,7 +93,7 @@ namespace Console_RPG
                     }
                     break;
                 case 2:
-                    if (mLoc.map[monsterY + 1][monsterX] != "#" & mLoc.map[monsterY + 1][monsterX] != "|" & mLoc.map[monsterY + 1][monsterX] != "_")
+                    if (mLoc.map[monsterY + 1][monsterX] != "#" & mLoc.map[monsterY + 1][monsterX] != "0" & mLoc.map[monsterY + 1][monsterX] != "_")
                     {
                         monsterY = monsterY + 1;
                     }
@@ -128,7 +129,7 @@ namespace Console_RPG
                     }
                     break;
                 case 3:
-                    if (mLoc.map[monsterY - 1][monsterX] != "#" & mLoc.map[monsterY - 1][monsterX] != "|" & mLoc.map[monsterY - 1][monsterX] != "_")
+                    if (mLoc.map[monsterY - 1][monsterX] != "#" & mLoc.map[monsterY - 1][monsterX] != "0" & mLoc.map[monsterY - 1][monsterX] != "_")
                     {
                         monsterY = monsterY - 1;
                     }
@@ -167,7 +168,7 @@ namespace Console_RPG
         }
         public new void placeMonster()
         {
-            mLoc.map[monsterY][monsterX] = "M";
+            mLoc.map[monsterY][monsterX] = icon;
 
             /*
             switch (lastDir)
@@ -194,7 +195,7 @@ namespace Console_RPG
         public new void removeMonster()
         {
 
-            mLoc.map[monsterY][monsterX] = "0";
+            mLoc.map[monsterY][monsterX] = " ";
 
             /*
             switch (lastDir)
@@ -241,5 +242,23 @@ namespace Console_RPG
                 }
             }
         }
+        public void slayTail()
+        {
+
+        }
+
+        public static Boss getTailbyNr(int nr)
+        {     
+            foreach (Boss tail in tailList)
+            {
+                if (tail.tailChain == nr)
+                {
+                    return tail;
+                }
+            }
+            return null;
+            
+        }
+
     }
 }
