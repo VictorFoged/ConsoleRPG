@@ -27,6 +27,14 @@ namespace Console_RPG
                     }
                 }
             }
+
+        }
+        public static void checkBossColli()
+        {
+            if(Program.player.playerX == Program.SnakeBoss.monsterX & Program.player.playerY == Program.SnakeBoss.monsterY)
+            {
+                Program.player.HP = Program.player.HP - 5;
+            }
         }
 
         public void showInven()
