@@ -8,9 +8,9 @@ namespace Console_RPG
 {
     class Boss :Monster
     {
-        public static Boss[] tailList = new Boss[3];
-        public string icon = "M";
-        public int tailChain = 0;
+        
+        public new string icon = "M";
+        
 
         public new void moveMonster() //Make Recursive Random Movement Function that doesn't risk infinity loops. Boss needs recursive because of tail.
         {
@@ -168,97 +168,25 @@ namespace Console_RPG
         }
         public new void placeMonster()
         {
-            mLoc.map[monsterY][monsterX] = icon;
-
-            /*
-            switch (lastDir)
+            if (state == 1)
             {
-                case 0:
-                    mLoc.map[monsterY][monsterX-1] = "0";
-                    
-                    break;
-                case 1:
-                    mLoc.map[monsterY][monsterX+1] = "0";
-                    
-                    break;
-                case 2:
-                    mLoc.map[monsterY-1][monsterX] = "0";
-                    
-                    break;
-                case 3:
-                    mLoc.map[monsterY+1][monsterX] = "0";
-                    
-                    break;
-            }
-            */
+                mLoc.map[monsterY][monsterX] = icon;
+            } 
         }
         public new void removeMonster()
         {
-
-            mLoc.map[monsterY][monsterX] = " ";
-
-            /*
-            switch (lastDir)
+            if (state == 1)
             {
-                case 0:
-                    mLoc.map[monsterY][monsterX - 1] = " ";
-
-                    break;
-                case 1:
-                    mLoc.map[monsterY][monsterX + 1] = " ";
-                    break;
-                case 2:
-                    mLoc.map[monsterY - 1][monsterX] = " ";
-                    break;
-                case 3:
-                    mLoc.map[monsterY + 1][monsterX] = " ";
-                    break;
+                mLoc.map[monsterY][monsterX] = " ";
             }
-            */
-        }
-
-        public void followTail(Boss lead)
-        {
-            if (Math.Abs(lead.monsterX - monsterX) > Math.Abs(lead.monsterY - monsterY))
-            {
-                if (lead.monsterX > monsterX)
-                {
-                    monsterX = monsterX + 1;
-                }
-                else
-                {
-                    monsterX = monsterX - 1;
-                }
-            }
-            else
-            {
-                if (lead.monsterY > monsterY)
-                {
-                    monsterY = monsterY + 1;
-                }
-                else
-                {
-                    monsterY = monsterY - 1;
-                }
-            }
-        }
-        public void slayTail()
-        {
-
-        }
-
-        public static Boss getTailbyNr(int nr)
-        {     
-            foreach (Boss tail in tailList)
-            {
-                if (tail.tailChain == nr)
-                {
-                    return tail;
-                }
-            }
-            return null;
             
         }
+        
+
+
+
+
+        
 
     }
 }

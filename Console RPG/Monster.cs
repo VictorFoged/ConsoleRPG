@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
-    class Monster :Map
+    class Monster :NPC
     {
         public static List<Monster> mList = new List<Monster>();
 
@@ -88,11 +88,11 @@ namespace Console_RPG
             }
         }
 
-        public void placeMonster()
+        public new void placeMonster()
         {
             mLoc.map[monsterY][monsterX] = "M";
         }
-        public void removeMonster()
+        public new void removeMonster()
         {
            
             mLoc.map[monsterY][monsterX] = " ";
