@@ -70,6 +70,21 @@ namespace Console_RPG
         }
         public static void jeppeInter()
         {
+            foreach (Item item in Player.Inventory)
+            {
+                if (item == Program.SnakeHead)
+                {
+                    Program.dialouge = "Thank You for slaying \nThe Giant Winter Snake \n \nYou got a Snake Head Hat";
+                    Player.Inventory.Remove(Program.SnakeHead);
+                    Player.Inventory.Add(Program.SnakeHeadHat);
+                    return;
+                }
+                else if (item == Program.SnakeHeadHat)
+                {
+                    Program.dialouge = "Thank You Again!";
+                }
+            }
+            
             Program.dialouge = "Help us slay the \nGiant Winter Snake to \nto the north.";
         }
 
@@ -122,10 +137,11 @@ namespace Console_RPG
             
         }
         //Tail Killing
+        public static NPC lastTail = Program.SnakeTail;
         public void slayTail()
         {
-            NPC lastTail = Program.SnakeTail;
 
+            lastTail = Program.SnakeTail;
             foreach (NPC tail in tailList)
             {
                 if(tail.tailChain > lastTail.tailChain)
