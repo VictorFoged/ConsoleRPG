@@ -194,5 +194,21 @@ namespace Console_RPG
             }
         }
 
+        public static void openKing()
+        {
+            bool check = Program.player.checkInven(Program.SnakeHeadHat);
+            if (check == true)
+            {
+                Program.dialouge = "That's a nice hat! \nYou may now enter";
+                NPC.npcList.Remove(Program.kingKeeper);
+                Program.currentMap.placeObject(7, 9, " ");
+
+            }
+            else
+            {
+                Program.dialouge = "You need to wear a \nhat to visit The King";
+            }
+        }
+
     }
 }

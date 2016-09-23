@@ -11,8 +11,6 @@ namespace Console_RPG
     { //Test Comment
         public static List<Map> MapList = new List<Map>();
         //public static List<Action> WorldGen = new List<Action>();
-        
-
 
         public static void addMap(Map map)
         {
@@ -32,8 +30,10 @@ namespace Console_RPG
             Program.createRoad4();
             Program.createRoad5();
             Program.createBossRoom();
+            Program.createKingGarden();
+            Program.createKingRoom();
             
         }
-
+      
     }
 }

@@ -21,7 +21,10 @@ namespace Console_RPG
         public static Map road4 = new Map();
         public static Map road5 = new Map();
         public static Map roadBoss = new Map();
+        public static Map kingGarden = new Map();
+        public static Map kingRoom = new Map();
 
+        public static int state = 1;
         public static Map currentMap = town;
         public static string dialouge = "Welcome to The Town";
 
@@ -62,6 +65,12 @@ namespace Console_RPG
                 }
                 if (currentMap == roadBoss)
                 {
+                    if (state == 1)
+                    {
+                        dialouge = "Use your Sword (e) to cut if the Snake's tail \nStart from the end";
+                        state = 0;
+                    }
+                    
                     SnakeTail.removeMonster();
                     SnakeTail2.removeMonster();
                     SnakeTail3.removeMonster();
@@ -219,6 +228,7 @@ namespace Console_RPG
                 case 'i':
                     player.showInven();
                     break;
+               
             }
 
         }
@@ -266,6 +276,7 @@ namespace Console_RPG
             Monster.mList.Add(snake4);
         }
         public static NPC gateKeeper = new NPC();
+        public static NPC kingKeeper = new NPC();
         public static void createTown()
         {
             World.addMap(town);
@@ -298,9 +309,12 @@ namespace Console_RPG
             gateKeeper.npcX = 7;
             gateKeeper.npcY = 1;
             gateKeeper.interact = NPC.gateInter;
-
-            gateKeeper.npcDiag = "Hello";
             NPC.npcList.Add(gateKeeper);
+
+            kingKeeper.npcX = 7;
+            kingKeeper.npcY = 9;
+            kingKeeper.interact = NPC.openKing;
+            NPC.npcList.Add(kingKeeper);
 
         
         }
@@ -417,7 +431,7 @@ namespace Console_RPG
             
         }
         public static NPC Jeppe = new NPC();
-
+        
         public static void createTown2()
         {
             World.addMap(town2);
@@ -688,6 +702,51 @@ namespace Console_RPG
             SnakeHead.name = "Giant White Snake Head";
             SnakeHeadHat.name = "Snake Head Hat";
 
+        }
+
+
+        public static void createKingGarden()
+        {
+            World.addMap(kingGarden);
+            kingGarden.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            kingGarden.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            kingGarden.l3 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
+            kingGarden.l4 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
+            kingGarden.l5 = new string[] { "#", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
+            kingGarden.l6 = new string[] { "|", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
+            kingGarden.l7 = new string[] { "#", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
+            kingGarden.l8 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
+            kingGarden.l9 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
+            kingGarden.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            kingGarden.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+
+            kingGarden.mapcord = new int[] { 0, -1 };
+        }
+
+        public static NPC king = new NPC();
+        public static void createKingRoom()
+        {
+            Player.Inventory.Add(SnakeHeadHat);
+            World.addMap(kingRoom);
+            kingRoom.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            kingRoom.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            kingRoom.l3 = new string[] { "#", "#", "#", "#", " ", "#", " ", " ", " ", "#", " ", "#", "#", "#", "#" };
+            kingRoom.l4 = new string[] { "#", " ", " ", "#", " ", "#", " ", " ", " ", "#", " ", "#", " ", " ", "#" };
+            kingRoom.l5 = new string[] { "#", "#", "#", "#", " ", "#", " ", " ", " ", "#", " ", "#", "#", "#", "#" };
+            kingRoom.l6 = new string[] { "#", "#", " ", " ", " ", "#", " ", " ", " ", "#", " ", " ", " ", "#", "#" };
+            kingRoom.l7 = new string[] { "#", "#", "#", "#", " ", "#", " ", " ", " ", "#", " ", "#", "#", "#", "#" };
+            kingRoom.l8 = new string[] { "#", " ", " ", "#", " ", "#", " ", " ", " ", "#", " ", "#", " ", " ", "#" };
+            kingRoom.l9 = new string[] { "#", "#", "#", "#", " ", "#", " ", " ", " ", "#", " ", "#", "#", "#", "#" };
+            kingRoom.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", "N", " ", " ", " ", " ", " ", " ", "#" };
+            kingRoom.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+
+            kingRoom.mapcord = new int[] { 0, -2 };
+
+            king.npcX = 7;
+            king.npcY = 9;
+            king.nLoc = kingRoom;
+            king.npcDiag = "Hello, I am King \nMy dog ran into my maze \nand hasn't come back yet \nPlease help me find him \nI have unlocked the gate";
+            NPC.npcList.Add(king);
         }
     }
 }
