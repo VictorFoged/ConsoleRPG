@@ -58,7 +58,7 @@ namespace Console_RPG
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Program.player.HP);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            
+            Console.WriteLine("(" + Program.player.playerCord[0] + "," + Program.player.playerCord[1] + ")");
             Console.WriteLine("\n" + Program.dialouge);
         }
         public void placePlayer()
@@ -85,7 +85,8 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
-  
+                       
+
                     }
                     else
                     {
@@ -97,6 +98,7 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
+                        
                     }
                     break;
                 case "_":
@@ -111,6 +113,7 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
+                        
                     }
                     else
                     {
@@ -123,6 +126,7 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
+                       
                     }
                     break;
             }
@@ -143,6 +147,10 @@ namespace Console_RPG
             if (player.playerCord != Program.currentMap.mapcord)
             {
                 Program.currentMap = getMapByLoc(player.playerCord);
+                if (Program.currentMap == Program.maze2)
+                {
+                    World.ranGen(Program.maze2);
+                }
             }
             
         }
