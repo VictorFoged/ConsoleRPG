@@ -37,13 +37,14 @@ namespace Console_RPG
         public void genMap(string[][] map)
         {
             createMap();
+            Console.Clear();
             Console.BackgroundColor = Background;
             Console.ForegroundColor = Foreground;
             //Console.WriteLine(map[0][0]);
             //Console.ReadLine();
             xlen = this.map[0].Length;
             ylen = this.map.Length;
-            Console.Clear();
+            
             for (int y = 0; y < ylen; y++) //10
             {
                 for (int x = 0; x < xlen; x++) //15
@@ -53,9 +54,11 @@ namespace Console_RPG
                 Console.Write("\n");
 
             }
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Program.player.HP);
             Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("(" + Program.player.playerCord[0] + "," + Program.player.playerCord[1] + ")");
             Console.WriteLine("\n" + Program.dialouge);
         }
         public void placePlayer()
@@ -82,7 +85,8 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
-  
+                       
+
                     }
                     else
                     {
@@ -94,6 +98,7 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
+                        
                     }
                     break;
                 case "_":
@@ -108,6 +113,7 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
+                        
                     }
                     else
                     {
@@ -120,6 +126,7 @@ namespace Console_RPG
                         placePlayer();
                         removePlayer();
                         clearDia();
+                       
                     }
                     break;
             }
@@ -140,6 +147,10 @@ namespace Console_RPG
             if (player.playerCord != Program.currentMap.mapcord)
             {
                 Program.currentMap = getMapByLoc(player.playerCord);
+                if (Program.currentMap == Program.maze2)
+                {
+                    World.ranGen(Program.maze2);
+                }
             }
             
         }

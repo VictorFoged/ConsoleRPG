@@ -181,6 +181,22 @@ namespace Console_RPG
             }
             
         }
+        public static int coll = 0;
+        public static void checkHead()
+        {
+            if (NPC.tailList.Count == 0)
+            {
+                
+                Program.SnakeBoss.state = 0;
+                if (coll == 0)
+                {
+                    Program.dialouge = "You have slayed The Giant Winter Snake \n\nYou put the head into \nyour inventory";
+                    Player.Inventory.Add(Program.SnakeHead);
+                    coll = coll + 1;
+                }
+                
+            }
+        }
         
 
 
