@@ -13,3 +13,4 @@ D:\Github Reps\ConsoleRPG\Console RPG\bin\Debug\Console RPG.pdb
 D:\Github Reps\ConsoleRPG\Console RPG\obj\Debug\Console RPG.csprojResolveAssemblyReference.cache
 D:\Github Reps\ConsoleRPG\Console RPG\obj\Debug\Console RPG.exe
 D:\Github Reps\ConsoleRPG\Console RPG\obj\Debug\Console RPG.pdb
+D:\Github Reps\ConsoleRPG\Console RPG\bin\Debug\Victory.wav

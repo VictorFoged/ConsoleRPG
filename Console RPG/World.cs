@@ -42,7 +42,7 @@ namespace Console_RPG
         public static string ranMake()
         {
             
-            int n = ran.Next(0, 5);
+            int n = ran.Next(0, 3);
 
             switch (n)
             {
@@ -76,7 +76,7 @@ namespace Console_RPG
                     r = ranMake();
                     map.map[y][x] = r; 
                 }
-                Console.Write("\n");
+                
 
             }
         }

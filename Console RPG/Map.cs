@@ -15,17 +15,17 @@ namespace Console_RPG
         public ConsoleColor Background = ConsoleColor.Black;
         public ConsoleColor Foreground = ConsoleColor.White;
 
-        public string[] l1 = { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+        public string[] l1 = { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
         public string[] l2 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l3 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l4 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l5 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-        public string[] l6 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|" };
+        public string[] l6 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l7 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l8 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l9 = { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
         public string[] l10 ={ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-        public string[] l11 ={ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+        public string[] l11 ={ "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
 
         public void createMap()
         {
@@ -147,9 +147,27 @@ namespace Console_RPG
             if (player.playerCord != Program.currentMap.mapcord)
             {
                 Program.currentMap = getMapByLoc(player.playerCord);
-                if (Program.currentMap == Program.maze2)
+
+
+                if (Program.currentMap == Program.maze3)
                 {
-                    World.ranGen(Program.maze2);
+                    Program.maze3.ranGen();
+                }
+                if (Program.currentMap == Program.maze5)
+                {
+                    Program.maze5.ranGen();
+                }
+                if (Program.currentMap == Program.maze6)
+                {
+                    Program.maze6.ranGen();
+                }
+                if (Program.currentMap == Program.maze9)
+                {
+                    Program.maze9.ranGen();
+                }
+                if (Program.currentMap == Program.maze11)
+                {
+                    Program.maze11.ranGen();
                 }
             }
             
@@ -171,7 +189,63 @@ namespace Console_RPG
         {
             Program.dialouge = "";
         }
-        
-        
+        public static void preRandom()
+        {
+            Program.maze3.ranGen();
+            Program.maze5.ranGen();
+            Program.maze6.ranGen();
+            Program.maze9.ranGen();
+            Program.maze11.ranGen();
+            
+        }
+
+
+        public static string r;
+        public static Random ran = new Random();
+        public static string ranMake()
+        {
+
+            int n = ran.Next(0, 3);
+
+            switch (n)
+            {
+                case 0:
+                    r = " ";
+                    break;
+                case 1:
+                    r = " ";
+                    break;
+                case 2:
+                    r = "#";
+                    break;
+
+            }
+
+            return r;
+        }
+
+        public void ranGen()
+        {
+            createMap();
+            int xlen;
+            int ylen;
+
+            xlen = 15;
+            ylen = 10;
+
+            for (int y = 1; y < ylen - 1; y++) //10
+            {
+                for (int x = 1; x < xlen - 1; x++) //15
+                {
+                    r = ranMake();
+                    map[y][x] = r;
+                }
+
+
+            }
+        }
+
+
+
     }
 }

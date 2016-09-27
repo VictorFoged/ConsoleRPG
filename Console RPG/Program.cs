@@ -37,7 +37,7 @@ namespace Console_RPG
         public static Map maze12 = new Map();
         public static Map maze13 = new Map();
         public static Map maze14 = new Map();
-        
+        public static Item WonTheGame = new Item();
 
         public static int state = 1;
         public static Map currentMap = town;
@@ -45,17 +45,13 @@ namespace Console_RPG
 
         static void Main(string[] args)
         {
-            
+            World.genWorld();
             currentMap.genMap(currentMap.map);
             currentMap.placePlayer();
-            /*
-            createForest();
-            createTown();
-            createForest2();ff
-            createForest3();
-            createForest4();
-            */
-            World.genWorld();
+            
+
+
+            Map.preRandom();
             while (player.HP > 0)
             {
                 
@@ -483,6 +479,8 @@ namespace Console_RPG
         
         public static void createRoad()
         {
+
+            
             World.addMap(road);
             road.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             road.l2 = new string[] { "#", "#", "#", "#", "#", " ", " ", " ", " ", " ", "#", "#", "#", "#", "#" };
@@ -721,7 +719,7 @@ namespace Console_RPG
 
         }
 
-
+        public static NPC gate = new NPC();
         public static void createKingGarden()
         {
             World.addMap(kingGarden);
@@ -730,7 +728,7 @@ namespace Console_RPG
             kingGarden.l3 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
             kingGarden.l4 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
             kingGarden.l5 = new string[] { "#", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
-            kingGarden.l6 = new string[] { "|", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
+            kingGarden.l6 = new string[] { "|", "N", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
             kingGarden.l7 = new string[] { "#", " ", " ", " ", " ", " ", "#", "#", "#", " ", " ", " ", " ", " ", "#" };
             kingGarden.l8 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
             kingGarden.l9 = new string[] { "#", " ", " ", "#", "#", " ", " ", " ", " ", " ", "#", "#", " ", " ", "#" };
@@ -738,12 +736,19 @@ namespace Console_RPG
             kingGarden.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
 
             kingGarden.mapcord = new int[] { 0, -1 };
+            gate.npcX = 1;
+            gate.npcY = 5;
+            gate.nLoc = kingGarden;
+            gate.npcDiag = "The Gate is Locked";
+            NPC.npcList.Add(gate);
+            
+
         }
 
         public static NPC king = new NPC();
         public static void createKingRoom()
         {
-            Player.Inventory.Add(SnakeHeadHat);
+            
             World.addMap(kingRoom);
             kingRoom.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             kingRoom.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
@@ -762,7 +767,8 @@ namespace Console_RPG
             king.npcX = 7;
             king.npcY = 9;
             king.nLoc = kingRoom;
-            king.npcDiag = "Hello, I am King \nMy dog ran into my maze \nand hasn't come back yet \nPlease help me find him \nI have unlocked the gate";
+            king.interact = NPC.kingInter;
+           // king.npcDiag = "Hello, I am King \nMy dog ran into my maze \nand hasn't come back yet \nPlease help me find him \nI have unlocked the gate";
             NPC.npcList.Add(king);
         }
 
@@ -779,8 +785,8 @@ namespace Console_RPG
             maze1.l7 = new string[] { "#", " ", "#", " ", "#", "#", "#", " ", "#", "#", "#", "#", "#", " ", "#" };
             maze1.l8 = new string[] { "#", " ", "#", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#", " ", "#" };
             maze1.l9 = new string[] { "#", " ", "#", " ", "#", " ", "#", "#", "#", "#", "#", " ", "#", " ", "#" };
-            maze1.l10 = new string[]{ "#", " ", " ", " ", "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", "#" };
-            maze1.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            maze1.l10 = new string[] { "#", " ", " ", " ", "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", "#" };
+            maze1.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
 
             maze1.mapcord = new int[] { -1, -1 };
 
@@ -797,27 +803,33 @@ namespace Console_RPG
             maze2.l7 = new string[] { "#", " ", "#", " ", "#", "#", "#", "#", "#", " ", "#", " ", "#", " ", "#" };
             maze2.l8 = new string[] { "#", " ", "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", "#", " ", "#" };
             maze2.l9 = new string[] { "#", " ", "#", "#", "#", "#", "#", " ", "#", "#", "#", "#", "#", " ", "#" };
-            maze2.l10 = new string[]{ "#", " ", " ", " ", " ", " ", "#", " ", "#", " ", " ", " ", " ", " ", "#" };
-            maze2.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
-            
+            maze2.l10 = new string[] { "#", " ", " ", " ", " ", " ", "#", " ", "#", " ", " ", " ", " ", " ", "#" };
+            maze2.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+
             maze2.mapcord = new int[] { -2, -1 };
 
             // Maze 3
 
             World.addMap(maze3);
-
+            /*
             maze3.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
-            maze3.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze3.l3 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze3.l4 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze3.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze3.l6 = new string[] { "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze3.l2 = new string[] { "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze3.l3 = new string[] { "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze3.l4 = new string[] { "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze3.l5 = new string[] { "#", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze3.l6 = new string[] { "|", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze3.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze3.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze3.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze3.l10 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze3.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
-            World.ranGen(maze3);
+            */
+            maze3.l11[7] = "_";
+            maze3.l6[0] = "|";
+            maze3.l6[14] = "#";
+            maze3.l1[7] = "#";
+
+
             maze3.mapcord = new int[] { -2, -0 };
 
             //Maze 4
@@ -853,7 +865,7 @@ namespace Console_RPG
             maze5.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze5.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze5.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
-            World.ranGen(maze5);
+            
             maze5.mapcord = new int[] { -3, -0 };
 
             //Maze 6
@@ -870,7 +882,7 @@ namespace Console_RPG
             maze6.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze6.l10 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze6.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
-            World.ranGen(maze6);
+            
             maze6.mapcord = new int[] { -2, -2 };
 
 
@@ -922,7 +934,7 @@ namespace Console_RPG
             maze9.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze9.l10 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze9.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
-            World.ranGen(maze9);
+            
             maze9.mapcord = new int[] { -3, -3 };
 
             //Maze 10
@@ -930,17 +942,45 @@ namespace Console_RPG
 
             maze10.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             maze10.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l3 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l4 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l6 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|" };
-            maze10.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze10.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze10.l3 = new string[] { "#", " ", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#" };
+            maze10.l4 = new string[] { "#", " ", "#", " ", " ", "#", " ", "D", " ", "#", " ", " ", "#", " ", "#" };
+            maze10.l5 = new string[] { "#", " ", "#", " ", " ", "#", " ", " ", " ", "#", " ", " ", "#", " ", "#" };
+            maze10.l6 = new string[] { "#", " ", "#", " ", " ", "#", " ", " ", " ", "#", " ", " ", "#", " ", "|" };
+            maze10.l7 = new string[] { "#", " ", "#", " ", " ", "#", " ", "#", " ", "#", " ", " ", "#", " ", "#" };
+            maze10.l8 = new string[] { "#", " ", "#", " ", " ", "#", " ", "#", " ", "#", " ", " ", "#", " ", "#" };
+            maze10.l9 = new string[] { "#", " ", "#", "#", "#", "#", " ", "#", " ", "#", "#", "#", "#", " ", "#" };
+            maze10.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", "#" };
             maze10.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
-            World.ranGen(maze10);
-            maze9.mapcord = new int[] { -3, -4 };
+            
+            maze10.mapcord = new int[] { -3, -4 };
+
+            dog.nLoc = maze10;
+            dog.icon = "D";
+            dog.npcX = 7;
+            dog.npcY = 3;
+            dog.interact = NPC.dogInter;
+            dog.npcDiag = "Woof \nFollow the dog back home? (y/n)";
+            NPC.npcList.Add(dog);
+            WonTheGame.name = "Won The Game Trophy";
+
+            //Maze 11
+            World.addMap(maze11);
+
+            maze11.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            maze11.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze11.l3 = new string[] { "#", " ", " ", "#", " ", " ", " ", " ", "#", " ", "#", " ", "#", " ", "#" };
+            maze11.l4 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze11.l5 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze11.l6 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze11.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", "#" };
+            maze11.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", "#" };
+            maze11.l9 = new string[] { "#", " ", " ", "#", " ", " ", " ", " ", " ", "#", "#", " ", "#", " ", "#" };
+            maze11.l10 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze11.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
+
+            maze11.mapcord = new int[] { -1, -2 };
+
+
         }
         public static NPC dog = new NPC();
     }

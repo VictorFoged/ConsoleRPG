@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -207,6 +209,50 @@ namespace Console_RPG
             else
             {
                 Program.dialouge = "You need to wear a \nhat to visit The King";
+            }
+        }
+        public static void dogInter()
+        {
+            //Console.WriteLine("Woof \nFollow the dog back home? (y/n)");
+            Program.dialouge = "Woof \nFollow the dog back home? (y/n)";
+            Program.currentMap.genMap(Program.currentMap.map);
+            char choice = Console.ReadKey().KeyChar;
+
+            if (choice == 'y')
+            {
+                Program.player.playerCord = new int[] { 0, -2 };
+                Program.currentMap.locPlayer();
+                Program.currentMap.placePlayer();
+                Program.dialouge = "You arrived back at King's house";
+                Program.currentMap.map[9][6] = "D";
+                Program.dog.state = 42;
+
+            }
+            else if (choice == 'n')
+            {
+
+            }
+            else
+            {
+                dogInter();
+            }
+        }
+
+        public static void kingInter()
+        {
+            if (Program.dog.state == 42)
+            {
+                Program.dialouge = "Thank you for finding my dog! \n \nHere, take this 'You Won the Game' trophy!";
+                Player.Inventory.Add(Program.WonTheGame);
+                SoundPlayer victory = new SoundPlayer(Assembly.GetExecutingAssembly().GetManifestResourceStream("Console_RPG.Victory.wav"));
+                victory.Play();
+
+            }
+            else
+            {
+                Program.dialouge = "Hello, I am King \nMy dog ran into my maze and hasn't come back yet \nPlease help me find him \nI have unlocked the gate";
+                Program.kingGarden.map[5][1] = " ";
+                NPC.npcList.Remove(Program.gate);
             }
         }
 
