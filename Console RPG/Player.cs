@@ -8,7 +8,7 @@ namespace Console_RPG
 {
     class Player 
     {
-        public int HP = 30;
+        public int HP = 10;
         public int playerX = 2;
         public int playerY = 5;
         public char lastDir = 'd';

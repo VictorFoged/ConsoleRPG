@@ -48,8 +48,6 @@ namespace Console_RPG
             World.genWorld();
             currentMap.genMap(currentMap.map);
             currentMap.placePlayer();
-            
-
 
             Map.preRandom();
             while (player.HP > 0)
@@ -57,13 +55,11 @@ namespace Console_RPG
                 
                 currentMap.genMap(currentMap.map);
 
-                
-
-
                 currentMap.removePlayer();
                 move(Console.ReadKey().KeyChar, currentMap);
                 currentMap.placePlayer();
-                currentMap.genMap(currentMap.map);
+                //currentMap.genMap(currentMap.map);
+                currentMap.createMap();
                 foreach (Monster m in Monster.mList)
                 {
                     if (m.mLoc == currentMap)
@@ -451,9 +447,9 @@ namespace Console_RPG
             //Player.Inventory.Add(Sword);
 
             town2.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
-            town2.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", "#", " ", "#" };
-            town2.l3 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", "#", " ", "#" };
-            town2.l4 = new string[] { "#", "#", "#", "#", "#", " ", " ", " ", " ", "#", " ", "#", "#", " ", "#" };
+            town2.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", "N", " ", " ", "#" };
+            town2.l3 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", " ", " ", " ", "#" };
+            town2.l4 = new string[] { "#", "#", "#", "#", "#", " ", " ", " ", " ", "#", " ", "#", "#", "#", "#" };
             town2.l5 = new string[] { "#", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             town2.l6 = new string[] { "#", "N", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             town2.l7 = new string[] { "#", " ", " ", " ", "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
@@ -475,6 +471,7 @@ namespace Console_RPG
             Knud.npcY = 1;
             Knud.nLoc = town2;
             Knud.npcDiag = "You can't hit small snakes or \nbirds with a sword.";
+            NPC.npcList.Add(Knud);
         }
         
         public static void createRoad()
@@ -945,7 +942,7 @@ namespace Console_RPG
             maze10.l3 = new string[] { "#", " ", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", " ", "#" };
             maze10.l4 = new string[] { "#", " ", "#", " ", " ", "#", " ", "D", " ", "#", " ", " ", "#", " ", "#" };
             maze10.l5 = new string[] { "#", " ", "#", " ", " ", "#", " ", " ", " ", "#", " ", " ", "#", " ", "#" };
-            maze10.l6 = new string[] { "#", " ", "#", " ", " ", "#", " ", " ", " ", "#", " ", " ", "#", " ", "|" };
+            maze10.l6 = new string[] { "#", " ", "#", " ", " ", "#", " ", " ", " ", "#", " ", " ", "#", " ", "#" };
             maze10.l7 = new string[] { "#", " ", "#", " ", " ", "#", " ", "#", " ", "#", " ", " ", "#", " ", "#" };
             maze10.l8 = new string[] { "#", " ", "#", " ", " ", "#", " ", "#", " ", "#", " ", " ", "#", " ", "#" };
             maze10.l9 = new string[] { "#", " ", "#", "#", "#", "#", " ", "#", " ", "#", "#", "#", "#", " ", "#" };

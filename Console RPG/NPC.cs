@@ -215,6 +215,7 @@ namespace Console_RPG
         {
             //Console.WriteLine("Woof \nFollow the dog back home? (y/n)");
             Program.dialouge = "Woof \nFollow the dog back home? (y/n)";
+            Program.currentMap.placePlayer();
             Program.currentMap.genMap(Program.currentMap.map);
             char choice = Console.ReadKey().KeyChar;
 
