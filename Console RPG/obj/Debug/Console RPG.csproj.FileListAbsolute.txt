@@ -14,3 +14,4 @@ D:\Github Reps\ConsoleRPG\Console RPG\obj\Debug\Console RPG.csprojResolveAssembl
 D:\Github Reps\ConsoleRPG\Console RPG\obj\Debug\Console RPG.exe
 D:\Github Reps\ConsoleRPG\Console RPG\obj\Debug\Console RPG.pdb
 D:\Github Reps\ConsoleRPG\Console RPG\bin\Debug\Victory.wav
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Debug\Victory.wav

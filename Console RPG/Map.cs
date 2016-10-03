@@ -82,8 +82,26 @@ namespace Console_RPG
                         //Arrival Cords on fixed 15x11 grid
                         player.playerX = 1;
                         player.playerY = 5;
+                        
+
+                        Program.currentMap.genMap(Program.currentMap.map);
+
+                        Program.currentMap.removePlayer();
+                        
+                        Program.currentMap.placePlayer();
+                        
+                        Program.currentMap.createMap();
+
+
+                        /*
+                         * createMap();
+                         * 
                         placePlayer();
+                        Program.currentMap.genMap(Program.currentMap.map);
                         removePlayer();
+                        */
+
+
                         clearDia();
                        
 
@@ -95,8 +113,13 @@ namespace Console_RPG
                         //Arrival Cords
                         player.playerX = 13;
                         player.playerY = 5;
-                        placePlayer();
-                        removePlayer();
+
+                        Program.currentMap.genMap(Program.currentMap.map);
+                        Program.currentMap.removePlayer();
+                        Program.currentMap.placePlayer();
+                        Program.currentMap.createMap();
+
+
                         clearDia();
                         
                     }
@@ -109,11 +132,14 @@ namespace Console_RPG
                         //Arrival Cords on fixed 15x11 grid
                         player.playerX = 7;
                         player.playerY = 1;
+                        Program.currentMap.genMap(Program.currentMap.map);
+                        Program.currentMap.removePlayer();
+                        Program.currentMap.placePlayer();
+                        Program.currentMap.createMap();
 
-                        placePlayer();
-                        removePlayer();
+
                         clearDia();
-                        
+
                     }
                     else
                     {
@@ -122,11 +148,14 @@ namespace Console_RPG
                         //Arrival Cords on fixed 15x11 grid
                         player.playerX = 7;
                         player.playerY = 9;
+                        Program.currentMap.genMap(Program.currentMap.map);
+                        Program.currentMap.removePlayer();
+                        Program.currentMap.placePlayer();
+                        Program.currentMap.createMap();
 
-                        placePlayer();
-                        removePlayer();
+
                         clearDia();
-                       
+
                     }
                     break;
             }
