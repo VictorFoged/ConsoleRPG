@@ -15,23 +15,19 @@ namespace Console_RPG
         public int lastDir = 1;
         public int moveRange = 4;
         public Map mLoc = Program.forest;
-        public void moveMonster()
-        {
-            Random ran = new Random();
 
-            switch (lastDir)
-            {
-                case 0:
+        public void moveMonster() //Fully random movement, changes direction when wall is hit.
+        {
+            Random ran = new Random(); 
+
+            switch (lastDir) //Lastdir is the direction the mob is moveing, numbers between 0 and move range.
+            {                //Changes Monster coordinates based on lastDir. If lastDir hits a wall, generate new random lastDir
+                case 0:      //Mobs can get unlucky and get stuck on wall for a long time, untill they roll a proper direction.
                     if (mLoc.map[monsterY][monsterX+1] != "#"  &  mLoc.map[monsterY][monsterX + 1] != "|" & mLoc.map[monsterY][monsterX + 1] != "_")
                     {
                         monsterX = monsterX + 1;
                     }
-                    /*
-                    if (mLoc.map[monsterY][monsterX + 1] == "O")
-                    {
-                        Program.player.HP = Program.player.HP - 1;
-                    }
-                    */
+                
                     else
                     {
                         lastDir = ran.Next(0, moveRange);
@@ -42,12 +38,7 @@ namespace Console_RPG
                     {
                         monsterX = monsterX - 1;
                     }
-                    /*
-                    if (mLoc.map[monsterY][monsterX - 1] == "O")
-                    {
-                        Program.player.HP = Program.player.HP - 1;
-                    }
-                    */
+                    
                     else
                     {
                         lastDir = ran.Next(0, moveRange);
@@ -58,12 +49,7 @@ namespace Console_RPG
                     {
                         monsterY = monsterY + 1;
                     }
-                    /*
-                    if (mLoc.map[monsterY + 1][monsterX] == "O")
-                    {
-                        Program.player.HP = Program.player.HP - 1;
-                    }
-                    */
+                    
                     else
                     {
                         lastDir = ran.Next(0, moveRange);
@@ -74,12 +60,8 @@ namespace Console_RPG
                     {
                         monsterY = monsterY - 1;
                     }
-                    /*
-                    if (mLoc.map[monsterY - 1][monsterX] == "O")
-                    {
-                        Program.player.HP = Program.player.HP - 1;
-                    }
-                    */
+                    
+                    
                     else
                     {
                         lastDir = ran.Next(0, moveRange);

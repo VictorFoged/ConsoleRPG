@@ -10,6 +10,7 @@ namespace Console_RPG
 {
     class NPC
     {
+        //Class Variables
         public int npcX = 0;
         public int npcY = 0;
         public string npcDiag = " ";
@@ -24,7 +25,7 @@ namespace Console_RPG
 
         public static List<NPC> npcList = new List<NPC>();
 
-        public static NPC getNpcByLoc(int x, int y)
+        public static NPC getNpcByLoc(int x, int y) //Search for NPC in list based on Location on current map.
         {
             foreach (NPC npc in npcList)
             {
@@ -45,7 +46,7 @@ namespace Console_RPG
             Program.dialouge = talker.npcDiag;
             if (talker.interact != null)
             {
-                talker.interact();
+                talker.interact(); //Performs NPC Event if they have one.
             }
         }
 
@@ -55,7 +56,7 @@ namespace Console_RPG
             
         }
         
-        public static void gateInter()
+        public static void gateInter() //Events for certain NPCs below
         {
             bool check = Program.player.checkInven(Program.Sword);
             if (check == true)
@@ -95,13 +96,13 @@ namespace Console_RPG
 
         public void followTail(NPC lead)
         {
-            if (state == 1)
+            if (state == 1) //Check if alive
             {
 
 
-                if (Math.Abs(lead.npcX - npcX) > Math.Abs(lead.npcY - npcY))
+                if (Math.Abs(lead.npcX - npcX) > Math.Abs(lead.npcY - npcY)) //Check if largest difference is x or y axis
                 {
-                    if (lead.npcX > npcX)
+                    if (lead.npcX > npcX) //If x, check which direction and add or subtract
                     {
                         npcX = npcX + 1;
                     }
@@ -112,7 +113,7 @@ namespace Console_RPG
                 }
                 else
                 {
-                    if (lead.npcY > npcY)
+                    if (lead.npcY > npcY) //If y, check which direction and add/subtract
                     {
                         npcY = npcY + 1;
                     }
@@ -123,7 +124,7 @@ namespace Console_RPG
                 }
             }
         }
-        public void placeMonster()
+        public void placeMonster() //Copy paste from Monster Class
         {
             if (state == 1)
             {
@@ -146,20 +147,20 @@ namespace Console_RPG
             lastTail = Program.SnakeTail;
             foreach (NPC tail in tailList)
             {
-                if(tail.tailChain > lastTail.tailChain)
+                if(tail.tailChain > lastTail.tailChain) //Find last tail in chain
                 {
                     lastTail = tail;
                 }
             }
 
-            if(lastTail == talker)
+            if(lastTail == talker) //If tail is last, remove it.
             {
                 icon = " ";
                 Program.currentMap.placeObject(lastTail.npcX, lastTail.npcY, " ");
-                npcX = 7;
-                npcY = 5;
+                npcX = 7; //Tail is placed in inaccesible place on map and made invisible
+                npcY = 5; //because it left dead spots on the map, and this was the easiest way to fix it.
                 state = 0;
-                tailList.Remove(lastTail);
+                tailList.Remove(lastTail); 
                 
             }
             
@@ -167,7 +168,7 @@ namespace Console_RPG
             
         }
 
-        public void followHead(Boss lead)
+        public void followHead(Boss lead) //Same as followtail, except it follows the head.
         {
             if (state == 1)
             {
@@ -213,13 +214,13 @@ namespace Console_RPG
         }
         public static void dogInter()
         {
-            //Console.WriteLine("Woof \nFollow the dog back home? (y/n)");
+           
             Program.dialouge = "Woof \nFollow the dog back home? (y/n)";
             Program.currentMap.placePlayer();
             Program.currentMap.genMap(Program.currentMap.map);
             char choice = Console.ReadKey().KeyChar;
 
-            if (choice == 'y')
+            if (choice == 'y') //Creating player choice on y or n. n does nothing
             {
                 Program.player.playerCord = new int[] { 0, -2 };
                 Program.currentMap.locPlayer();
@@ -235,7 +236,7 @@ namespace Console_RPG
             }
             else
             {
-                dogInter();
+                dogInter(); //If buttons other than y or n is pressed, you get to try again.
             }
         }
 

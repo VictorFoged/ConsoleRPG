@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
-    class Item :NPC
+    class Item :NPC //Class for item interactions and items.
     {
-        public string name = "";
+        public string name = ""; //Name shown when you showInventory.
         public static void swordInt()
         {
             npcList.Remove(Program.Sword);

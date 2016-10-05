@@ -9,13 +9,13 @@ namespace Console_RPG
     class Player 
     {
         public int HP = 10;
-        public int playerX = 2;
+        public int playerX = 2; //Location in map
         public int playerY = 5;
         public char lastDir = 'd';
-        public int[] playerCord = { 0, 0 };
+        public int[] playerCord = { 0, 0 }; //Decides which map
         public static List<Item> Inventory = new List<Item>();
 
-        public static void checkColli()
+        public static void checkColli() //Checks if any monster is on the same tile as the player.
         {
             foreach (Monster m in Monster.mList)
             {
@@ -47,7 +47,7 @@ namespace Console_RPG
             Program.dialouge = inven;
         }
 
-        public bool checkInven(Item item)
+        public bool checkInven(Item item) //made this function and forgot about it, sometimes uses, sometimes not.
         {
             foreach (Item n in Inventory)
             {

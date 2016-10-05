@@ -1,0 +1,11 @@
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Release\Console RPG.exe.config
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Release\Victory.wav
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Release\Console RPG.exe.manifest
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Release\Console RPG.application
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Release\Console RPG.exe
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\bin\Release\Console RPG.pdb
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Release\Console RPG.csprojResolveAssemblyReference.cache
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Release\Console RPG.exe.manifest
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Release\Console RPG.application
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Release\Console RPG.exe
+C:\Users\Victor\SkyDrive\HTX\Programmering\Visual Studio\Console RPG\Console RPG\obj\Release\Console RPG.pdb

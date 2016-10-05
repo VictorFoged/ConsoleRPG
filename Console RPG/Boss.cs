@@ -12,10 +12,10 @@ namespace Console_RPG
         public new string icon = "M";
         
 
-        public new void moveMonster() //Make Recursive Random Movement Function that doesn't risk infinity loops. Boss needs recursive because of tail.
-        {
-            Random ran = new Random();
-
+        public new void moveMonster() //Make Recursive Random Movement Function that doesn't risk infinity loops. 
+        {                             //Boss needs recursive because of tail.
+            Random ran = new Random();//lastDir goes one up or one down instead of rerolling whole number, fixes potential infinty recursive loops.
+                                      //Otherwise, the function is the same as the one from the monster class.
             switch (lastDir)
             {
                 case 0:
@@ -184,7 +184,7 @@ namespace Console_RPG
         public static int coll = 0;
         public static void checkHead()
         {
-            if (NPC.tailList.Count == 0)
+            if (NPC.tailList.Count == 0) //If it has no tail, die.
             {
                 
                 Program.SnakeBoss.state = 0;

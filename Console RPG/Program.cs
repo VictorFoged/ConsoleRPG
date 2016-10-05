@@ -8,6 +8,8 @@ namespace Console_RPG
 {
     class Program
     {
+        // Declaration of Maps and Global Variables
+
         public static Player player = new Player();
         public static Map town = new Map();
         public static Map forest = new Map();
@@ -41,51 +43,51 @@ namespace Console_RPG
 
         public static int state = 1;
         public static Map currentMap = town;
-        public static string dialouge = "Welcome to The Town";
+        public static string dialouge = "Welcome to The Town"; //Dialouge printed after map print
 
         static void Main(string[] args)
         {
+            //Preloading map
             World.genWorld();
             currentMap.genMap(currentMap.map);
             currentMap.placePlayer();
 
             Map.preRandom();
-            while (player.HP > 0)
+            while (player.HP > 0) //Start of player Loop
             {
-                
-                currentMap.genMap(currentMap.map);
-
+                //General Order -> Generate Map, Remove Player from old location, Move Player, Place Player in new Loc.   
+                currentMap.genMap(currentMap.map); 
                 currentMap.removePlayer();
                 move(Console.ReadKey().KeyChar, currentMap);
                 currentMap.placePlayer();
-                //currentMap.genMap(currentMap.map);
-                currentMap.createMap();
+                currentMap.createMap(); //Refreshing Map before handling Monster Movement and Collision.
                 foreach (Monster m in Monster.mList)
                 {
                     if (m.mLoc == currentMap)
-                    {
+                    { //Same General Order
                         m.removeMonster();
                         m.moveMonster();
                         m.placeMonster();
                     }
                    
                 }
-                if (currentMap == roadBoss)
-                {
+                if (currentMap == roadBoss) //Boss Fight event
+                {                           //Could be placed in a single function to reduce clutter in main() function.
                     if (state == 1)
                     {
                         dialouge = "Use your Sword (e) to cut if the Snake's tail \nStart from the end";
                         state = 0;
                     }
-                    
+                    //Do General Order for each chain of the Snake's Tail
+                    //Each Chain is a seperate instance of the NPC class
                     SnakeTail.removeMonster();
                     SnakeTail2.removeMonster();
                     SnakeTail3.removeMonster();
                     SnakeTail4.removeMonster();
                     SnakeTail5.removeMonster();
 
-                    SnakeTail5.followTail(SnakeTail4);
-                    SnakeTail4.followTail(SnakeTail3);
+                    SnakeTail5.followTail(SnakeTail4); //See NPC Class
+                    SnakeTail4.followTail(SnakeTail3); //Follows next link in tail.
                     SnakeTail3.followTail(SnakeTail2);
                     SnakeTail2.followTail(SnakeTail);
                     SnakeTail.followHead(SnakeBoss);
@@ -95,7 +97,7 @@ namespace Console_RPG
                     SnakeTail3.placeMonster();
                     SnakeTail2.placeMonster();
                     SnakeTail.placeMonster();
-
+                    //Do General order of the Snake Head.
                     SnakeBoss.removeMonster();
                     SnakeBoss.moveMonster();
                     SnakeBoss.placeMonster();
@@ -111,12 +113,14 @@ namespace Console_RPG
                 {
                     if(npc.nLoc == currentMap)
                     {
+                        //NPCs don't move, so only need to place them. NPCs can be removed so you need to refresh.
                         npc.placeNPC();
                     }
                 }
                 Player.checkColli();
                
             }
+            //Game Over handling
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("\n            \n            \n            \n You Died   \n            \n            \n            \n");
@@ -124,31 +128,34 @@ namespace Console_RPG
             
         }
 
-        static void move(char key, Map map)
+        static void move(char key, Map map) //Function for changing player coordinates and triggering events.
         {
             
         
-            switch (key)
+            switch (key) //Switch statement for WASD and e + i.
+                         //If non valid key is pressed, it loops again, making all monsters move.
             {
                 case 'w':
+                    //Check of space to the north is free, if free add one to player coordinate y (My Map is upside down, so it subtracts one)
                     if (map.map[player.playerY - 1][player.playerX] == " " || map.map[player.playerY - 1][player.playerX] == "|" || map.map[player.playerY - 1][player.playerX] == "_" )
                     {
                         player.playerY = player.playerY - 1;
                         
                     }
                     
-                    else if (map.map[player.playerY - 1][player.playerX] == "M")
+                    else if (map.map[player.playerY - 1][player.playerX] == "M") //Collision Check, if you walk into the monster
                     {
                         player.HP = player.HP - 1;
                     }
-                    else if (map.map[player.playerY - 1][player.playerX] == "0")
+                    else if (map.map[player.playerY - 1][player.playerX] == "0") //Walk into tail
                     {
                         player.HP = player.HP - 2;
                     }
 
 
-                    player.lastDir = 'w';
+                    player.lastDir = 'w'; //Which way you character is currently facing, used for event handling in 'e'
                     break;
+                    //Repeat for asd.
                 case 'a':
                     if (map.map[player.playerY][player.playerX - 1] == " " || map.map[player.playerY][player.playerX - 1] == "|" || map.map[player.playerY][player.playerX - 1] == "_")
                     {
@@ -207,13 +214,14 @@ namespace Console_RPG
                     {
                         
                         case 'w':
-                            if (NPC.getNpcByLoc(player.playerX, player.playerY - 1) != null)
+                            if (NPC.getNpcByLoc(player.playerX, player.playerY - 1) != null) //Checks if an NPC is located to the north.
                             {
-                                NPC.npcSpeak(player.playerX, player.playerY - 1);
+                                NPC.npcSpeak(player.playerX, player.playerY - 1); //If there is an NPC, trigger NPC event.
                                 
                             }
                             
                             break;
+                            //repeat.
                         case 'a':
                             if (NPC.getNpcByLoc(player.playerX - 1, player.playerY) != null)
                             {
@@ -235,7 +243,13 @@ namespace Console_RPG
                      }
                     break;
                 case 'i':
+                    //Prints content of inventory below map.
                     player.showInven();
+                    break;
+                case 'C': //Cheats
+                    Player.Inventory.Add(SnakeHeadHat);
+                    Player.Inventory.Add(Sword);
+                    
                     break;
                
             }
@@ -247,6 +261,7 @@ namespace Console_RPG
 
         public static void createForest()
         {
+            //Changing Variables for Map Class and adding it to the maplist list.
             World.addMap(forest);
             
             forest.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#" };
@@ -284,8 +299,8 @@ namespace Console_RPG
             snake4.setMonster(12, 1);
             Monster.mList.Add(snake4);
         }
-        public static NPC gateKeeper = new NPC();
-        public static NPC kingKeeper = new NPC();
+        public static NPC gateKeeper = new NPC(); //NPCs with specific events (case depending dialouge) have to be static.
+        public static NPC kingKeeper = new NPC(); //NPCs with default dialouge are declared in the createXXX funtion along with monsters.
         public static void createTown()
         {
             World.addMap(town);
@@ -444,7 +459,7 @@ namespace Console_RPG
         public static void createTown2()
         {
             World.addMap(town2);
-            //Player.Inventory.Add(Sword);
+            //Player.Inventory.Add(Sword); <- Testing Cheat. Add any progression item here.
 
             town2.l1 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             town2.l2 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", "#", " ", "N", " ", " ", "#" };
@@ -493,7 +508,7 @@ namespace Console_RPG
             road.mapcord = new int[] { 0, 2 };
 
             Monster bird = new Monster();
-            bird.moveRange = 2;
+            bird.moveRange = 2; //Limiting movement to left and right.
             bird.setMonster(5, 6);
             bird.mLoc = road;
             Monster.mList.Add(bird);
@@ -821,6 +836,7 @@ namespace Console_RPG
             maze3.l10 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze3.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             */
+            //alternate map gen.
             maze3.l11[7] = "_";
             maze3.l6[0] = "|";
             maze3.l6[14] = "#";
@@ -929,8 +945,8 @@ namespace Console_RPG
             maze9.l7 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze9.l8 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
             maze9.l9 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze9.l10 = new string[] { "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
-            maze9.l11 = new string[] { "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
+            maze9.l10 = new string[]{ "#", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#" };
+            maze9.l11 = new string[]{ "#", "#", "#", "#", "#", "#", "#", "_", "#", "#", "#", "#", "#", "#", "#" };
             
             maze9.mapcord = new int[] { -3, -3 };
 
